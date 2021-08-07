@@ -46,7 +46,6 @@
 <script>
 import { login, register } from '@/api/user'
 
-// 仅在客户端加载 js-cookie 包
 const Cookie = process.client ? require('js-cookie') : undefined
 
 export default {
@@ -61,17 +60,16 @@ export default {
     return {
       user: {
         username: '',
-        email: 'lpzmail@163.com',
-        password: '12345678'
+        email: '',
+        password: ''
       },
-      errors: {} // 错误信息
+      errors: {}
     }
   },
 
   methods: {
     async onSubmit () {
       try {
-        // 提交表单请求登录
         const { data } = this.isLogin
           ? await login({
               user: this.user
@@ -80,17 +78,10 @@ export default {
             user: this.user
           })
 
-        // console.log(data)
-        // TODO: 保存用户的登录状态
         this.$store.commit('setUser', data.user)
-
-        // 为了防止刷新页面数据丢失，我们需要把数据持久化
         Cookie.set('user', data.user)
-
-        // 跳转到首页
         this.$router.push('/')
       } catch (err) {
-        // console.log('请求失败', err)
         this.errors = err.response.data.errors
       }
     }

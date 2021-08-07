@@ -111,7 +111,6 @@
             </nuxt-link>
           </div>
 
-          <!-- 分页列表 -->
           <nav>
             <ul class="pagination">
               <li
@@ -136,8 +135,6 @@
               </li>
             </ul>
           </nav>
-          <!-- /分页列表 -->
-
         </div>
 
         <div class="col-md-3">
@@ -185,7 +182,7 @@ export default {
     const tab = query.tab || 'global_feed'
     const tag = query.tag
 
-    const loadArticles = tab === 'global_feed'
+    const loadArticles = tab !== 'your_feed'
       ? getArticles
       : getYourFeedArticles
 

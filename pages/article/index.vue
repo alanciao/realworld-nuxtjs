@@ -15,6 +15,12 @@
 
       <div class="row article-content">
         <div class="col-md-12" v-html="article.body"></div>
+
+        <ul class="tag-list">
+          <li class="tag-default tag-pill tag-outline" v-for="tag in article.tagList" :key="tag">
+            {{ tag }}
+          </li>
+        </ul>
       </div>
 
       <hr />
@@ -39,7 +45,10 @@
 </template>
 
 <script>
-import { getArticle } from '@/api/article'
+import {
+  getArticle,
+  deleteArticle
+} from '@/api/article'
 import MarkdownIt from 'markdown-it'
 import ArticleMeta from './components/article-meta'
 import ArticleComments from './components/article-comments'

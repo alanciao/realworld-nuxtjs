@@ -15,10 +15,6 @@ export const getYourFeedArticles = params => {
     method: 'GET',
     url: '/api/articles/feed',
     params,
-    // headers: {
-    //   // 添加用户身份，数据格式：Token空格Token数据
-    //   Authorization: `Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDgxMTYsInVzZXJuYW1lIjoibHB6OTk5IiwiZXhwIjoxNTk3NzQxNTA4fQ.2yO8Fss4hYnvsIN2UYHsutQ1hmYqSSAA-UrIRnP4DOY`
-    // }
   })
 }
 
@@ -51,5 +47,48 @@ export const getComments = slug => {
   return request({
     method: 'GET',
     url: `/api/articles/${slug}/comments`
+  })
+}
+
+// 新建文章
+export const createArticle = data => {
+  return request({
+    method: 'POST',
+    url: '/api/articles',
+    data
+  })
+}
+
+// 修改文章
+export const updateArticle = (slug, data) => {
+  return request({
+    method: 'PUT',
+    url: `/api/articles/${slug}`,
+    data
+  })
+}
+
+// 删除文章
+export const deleteArticle = slug => {
+  return request({
+    method: 'DELETE',
+    url: `/api/articles/${slug}`
+  })
+}
+
+// 添加评论
+export const addComment = (slug, comment) => {
+  return request({
+    method: 'POST',
+    url: `/api/articles/${slug}/comments`,
+    data: { comment: { body: comment } }
+  })
+}
+
+// 删除评论
+export const deleteComment = (slug, id) => {
+  return request({
+    method: 'DELETE',
+    url: `/api/articles/${slug}/comments/${id}`
   })
 }
