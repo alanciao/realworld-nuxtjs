@@ -136,7 +136,6 @@
             </ul>
           </nav>
         </div>
-
         <div class="col-md-3">
           <div class="sidebar">
             <p>Popular Tags</p>
